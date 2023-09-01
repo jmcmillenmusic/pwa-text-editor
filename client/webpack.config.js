@@ -23,15 +23,24 @@ module.exports = () => {
         title: 'JateDB'
       }),
       new WebpackPwaManifest({
+        fingerprints: false,
+        inject: true,
         name: 'Jate',
         short_name: 'Jate',
         description: 'Take notes whenever you want!',
         start_url: './',
-        publicPath: './'
+        publicPath: './',
+        icons: [
+          {
+            src: path.resolve('src/images/logo.png'),
+            sizes: [96, 128, 192, 256, 384, 512],
+            destination: path.join('assets', 'icons'),
+          },
+        ]
       }),
       new InjectManifest({
-        swSrc: './src/sw.js',
-        swDest: 'service-worker.js',
+        swSrc: './src-sw.js',
+        swDest: 'src-sw.js',
       })
     ],
 
